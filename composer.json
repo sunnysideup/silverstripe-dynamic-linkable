@@ -30,8 +30,8 @@
         "issues": "http://github.com/dynamic/silverstripe-linkable/issues"
     },
     "require": {
-        "silverstripe/vendor-plugin": "^1.0",
-        "silverstripe/framework": "^4.0",
+        "silverstripe/vendor-plugin": "^1 || ^2.0",
+        "silverstripe/framework": "^4.0 || ^5.0",
         "unclecheese/display-logic": "^2.0"
     },
     "require-dev": {
