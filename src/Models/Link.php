@@ -143,7 +143,15 @@ class Link extends DataObject
         if ($templates) {
             $i18nTemplates = [];
             foreach ($templates as $key => $label) {
-                $i18nTemplates[$key] = _t('Linkable.STYLE' . strtoupper($key), $label);
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: strtoupper($
+  * EXP: SS5 change
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
+                $i18nTemplates[$key] = _t('Linkable.STYLE' . strtoupper((string) $key), $label);
             }
 
             $fields->addFieldToTab(
@@ -211,6 +219,15 @@ class Link extends DataObject
             ->displayIf('Type')
             ->isEqualTo('Phone');
 
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: ->extend(
+  * NEW: ->extend( ...  (COMPLEX)
+  * EXP: Changed parameter name in ... SilverStripe\Core\Extensible::extend() from $a1 to $arguments and modified it to accept variable arguments using the splat operator
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
         $this->extend('updateCMSFields', $fields);
 
         return $fields;
@@ -301,7 +318,15 @@ class Link extends DataObject
 
         // Get translatable labels
         foreach ($types as $key => $label) {
-            $i18nTypes[$key] = _t('Linkable.TYPE' . strtoupper($key), $label);
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: strtoupper($
+  * EXP: SS5 change
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
+            $i18nTypes[$key] = _t('Linkable.TYPE' . strtoupper((string) $key), $label);
         }
 
         return $i18nTypes;
@@ -322,6 +347,15 @@ class Link extends DataObject
             ]);
 
             // Legacy. Recommended to use templating above.
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: ->extend(
+  * NEW: ->extend( ...  (COMPLEX)
+  * EXP: Changed parameter name in ... SilverStripe\Core\Extensible::extend() from $a1 to $arguments and modified it to accept variable arguments using the splat operator
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
             $this->extend('updateLinkTemplate', $this, $link);
 
             return $link;
@@ -369,6 +403,15 @@ class Link extends DataObject
                 break;
         }
 
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: ->extend(
+  * NEW: ->extend( ...  (COMPLEX)
+  * EXP: Changed parameter name in ... SilverStripe\Core\Extensible::extend() from $a1 to $arguments and modified it to accept variable arguments using the splat operator
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
         $this->extend('updateLinkURL', $LinkURL);
 
         return $LinkURL;
@@ -382,6 +425,15 @@ class Link extends DataObject
     public function getClasses()
     {
         $classes = $this->cssClass ? explode($this->cssClass, ' ') : [];
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: ->extend(
+  * NEW: ->extend( ...  (COMPLEX)
+  * EXP: Changed parameter name in ... SilverStripe\Core\Extensible::extend() from $a1 to $arguments and modified it to accept variable arguments using the splat operator
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
         $this->extend('updateClasses', $classes);
         $classes = implode(' ', $classes);
 
@@ -419,7 +471,15 @@ class Link extends DataObject
     {
         $types = $this->config()->get('types');
 
-        return isset($types[$this->Type]) ? _t('Linkable.TYPE' . strtoupper($this->Type), $types[$this->Type]) : null;
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: strtoupper($
+  * EXP: SS5 change
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
+        return isset($types[$this->Type]) ? _t('Linkable.TYPE' . strtoupper((string) $this->Type), $types[$this->Type]) : null;
     }
 
     /**
@@ -454,7 +514,15 @@ class Link extends DataObject
                 if ($this->{$type} == '') {
                     $valid = false;
                     $message = _t(
-                        'Linkable.VALIDATIONERROR_EMPTY' . strtoupper($type),
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: strtoupper($
+  * EXP: SS5 change
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
+                        'Linkable.VALIDATIONERROR_EMPTY' . strtoupper((string) $type),
                         "You must enter a $type for a link type of \"$this->LinkType\""
                     );
                 }
@@ -486,7 +554,15 @@ class Link extends DataObject
             switch ($type) {
                 case 'URL':
                     $allowedFirst = array('#', '/');
-                    if (!in_array(substr($this->URL, 0, 1), $allowedFirst) && !filter_var($this->URL, FILTER_VALIDATE_URL)) {
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: substr($
+  * EXP: SS5 change
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
+                    if (!in_array(substr((string) $this->URL, 0, 1), $allowedFirst) && !filter_var($this->URL, FILTER_VALIDATE_URL)) {
                         $valid = false;
                         $message = _t(
                             'Linkable.VALIDATIONERROR_VALIDURL',
@@ -520,6 +596,15 @@ class Link extends DataObject
             $result->addError($message);
         }
 
+
+/**
+  * ### @@@@ START REPLACEMENT @@@@ ###
+  * WHY: automated upgrade
+  * OLD: ->extend(
+  * NEW: ->extend( ...  (COMPLEX)
+  * EXP: Changed parameter name in ... SilverStripe\Core\Extensible::extend() from $a1 to $arguments and modified it to accept variable arguments using the splat operator
+  * ### @@@@ STOP REPLACEMENT @@@@ ###
+  */
         $this->extend('updateValidate', $result);
 
         return $result;
