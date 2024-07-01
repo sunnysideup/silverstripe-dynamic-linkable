@@ -13,15 +13,6 @@ use SilverStripe\ORM\DataExtension;
  */
 class LinkableDataExtension extends DataExtension
 {
-
-/**
-  * ### @@@@ START REPLACEMENT @@@@ ###
-  * WHY: automated upgrade
-  * OLD: onBeforeDuplicate(
-  * NEW: onBeforeDuplicate( ...  (COMPLEX)
-  * EXP: Changed parameter type ... DNADesign\Elemental\TopPage\SiteTreeExtension::onBeforeDuplicate() for $original from Page to SilverStripe\CMS\Model\SiteTree
-  * ### @@@@ STOP REPLACEMENT @@@@ ###
-  */
     public function onBeforeDuplicate()
     {
         $hasOne = Config::inst()->get(get_class($this->owner), 'has_one');
